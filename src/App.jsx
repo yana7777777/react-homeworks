@@ -1,61 +1,76 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
-let clickCount = 0;
+// Компонент, который загружает и отображает посты
+function DataFetcher({ userId }) {
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-function App() {
-    const [size, setSize] = useState({ width: 0, height: 0 });
-    const boxRef = useRef(null);
+    useEffect(() => {
+        console.log('Монтирование компонента');
+        fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
+            .then(res => res.json())
+            .then(data => {
+                setPosts(data.slice(0, 5));
+                setLoading(false);
+            });
 
-    useLayoutEffect(() => {
-        function updateSize() {
-            if (boxRef.current) {
-                const rect = boxRef.current.getBoundingClientRect();
-                setSize({
-                    width: Math.round(rect.width),
-                    height: Math.round(rect.height)
-                });
-                console.log('Размеры:', rect.width, rect.height);
-            }
-        }
+        return () => {
+            console.log('Размонтирование компонента');
+        };
+    }, [userId]);
 
-        updateSize();
-        window.addEventListener('resize', updateSize);
+    useEffect(() => {
+        console.log('Обновление компонента (зависимость userId)');
+    }, [userId]);
 
-        return () => window.removeEventListener('resize', updateSize);
-    }, []);
+    if (loading) {
+        return <p>Загрузка...</p>;
+    }
 
     return (
-        <div className="card">
-            <h1>ResizableBox</h1>
-            <div
-                ref={boxRef}
-                style={{
-                    width: '80%',
-                    maxWidth: '600px',
-                    height: '250px',
-                    minWidth: '200px',
-                    minHeight: '100px',
-                    resize: 'both',
-                    overflow: 'auto',
-                    backgroundColor: '#3498db',
-                    borderRadius: '12px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    fontSize: '18px',
-                    margin: '0 auto',
-                    padding: '10px',
-                    boxSizing: 'border-box',
-                    border: '2px solid #2980b9'
-                }}
-            >
-                <span>Ширина: {size.width}px, Высота: {size.height}px</span>
-            </div>
-            <p>Потяните за правый нижний угол блока.</p>
+        <div>
+            <h3>Посты пользователя {userId}</h3>
+            <ul>
+                {posts.map(post => (
+                    <li key={post.id}>
+                        <strong>{post.title}</strong>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
 
-export default App;
+// Контейнер с кнопкой показать/скрыть
+function DataFetcherContainer() {
+    const [visible, setVisible] = useState(true);
+    const [userId, setUserId] = useState(1);
+
+    return (
+        <div className="card">
+            <h1>DataFetcher</h1>
+            <button onClick={() => setVisible(!visible)}>
+                {visible ? 'Скрыть' : 'Показать'}
+            </button>
+
+            {visible && (
+                <>
+                    <label>
+                        ID пользователя:
+                        <select value={userId} onChange={(e) => setUserId(Number(e.target.value))}>
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                            <option value={5}>5</option>
+                        </select>
+                    </label>
+                    <DataFetcher userId={userId} />
+                </>
+            )}
+        </div>
+    );
+}
+
+export default DataFetcherContainer;
