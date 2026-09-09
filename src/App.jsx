@@ -1,6 +1,8 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import './App.css';
 
+let clickCount = 0;
+
 function App() {
     const [size, setSize] = useState({ width: 0, height: 0 });
     const boxRef = useRef(null);
