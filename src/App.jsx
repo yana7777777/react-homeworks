@@ -1,5 +1,6 @@
 import { useReducer, useState } from 'react';
 import './App.css';
+import UserCard from './UserCard';
 
 const initialUsers = [
     { id: 1, name: 'Иван', active: true },
