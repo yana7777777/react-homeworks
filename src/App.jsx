@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
+import UserCard from './UserCard';
 
 function Home() {
     return <h2>Главная страница</h2>;
