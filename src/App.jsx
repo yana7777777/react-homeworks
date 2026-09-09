@@ -1,22 +1,27 @@
+import { useState } from 'react';
 import './App.css';
 
-function ButtonWithCallback({ onButtonClick }) {
-    return (
-        <button onClick={() => onButtonClick('Кнопка была нажата!')}>
-            Нажми меня
-        </button>
-    );
+function UserStatus({ isLoggedIn }) {
+    if (isLoggedIn) {
+        return <h2>Добро пожаловать, пользователь!</h2>;
+    }
+    return <button>Войти</button>;
 }
 
 function App() {
-    function handleClick(message) {
-        console.log(message);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    function toggleLogin() {
+        setIsLoggedIn(!isLoggedIn);
     }
 
     return (
         <div className="app">
-            <h1>Домашнее задание 10</h1>
-            <ButtonWithCallback onButtonClick={handleClick} />
+            <h1>Домашнее задание 11</h1>
+            <UserStatus isLoggedIn={isLoggedIn} />
+            <button onClick={toggleLogin}>
+                {isLoggedIn ? 'Выйти' : 'Войти (переключить)'}
+            </button>
         </div>
     );
 }
