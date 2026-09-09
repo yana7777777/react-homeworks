@@ -1,40 +1,80 @@
-.card {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 2px solid #3498db;
-  border-radius: 16px;
-  background-color: #f0f8ff;
-  text-align: center;
+.app {
+  max-width: 500px;
+  margin: 20px auto;
   font-family: Arial, sans-serif;
 }
 
-button {
-  padding: 8px 16px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin: 10px;
-}
-
-select {
-  padding: 6px;
-  margin-left: 10px;
-  border-radius: 6px;
+h1 {
+  text-align: center;
 }
 
 ul {
-  text-align: left;
   list-style: none;
   padding: 0;
 }
 
 li {
-  background: #fff;
-  margin: 8px 0;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
+  padding: 15px 20px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.user-name-row {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.edit-row,
+.actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.edit-row input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button.delete {
+  background-color: #e74c3c;
+}
+
+button.restore {
+  background-color: #9b59b6;
+}
+
+.deleted-section {
+  margin-top: 30px;
+  border-top: 2px solid #ccc;
+  padding-top: 20px;
+}
+
+.deleted-section h3 {
+  text-align: center;
+}
+
+.deleted-section li {
+  flex-direction: row;
+  justify-content: space-between;
 }
