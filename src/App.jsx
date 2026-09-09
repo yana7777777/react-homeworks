@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 
+let clickCount = 0;
+
 function App() {
     const [tasks, setTasks] = useState([]);
     const [text, setText] = useState('');
