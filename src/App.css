@@ -1,37 +1,54 @@
 .card {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
   border: 2px solid #3498db;
   border-radius: 16px;
   background-color: #f0f8ff;
-  padding: 30px;
-  max-width: 450px;
-  margin: 60px auto;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   font-family: Arial, sans-serif;
 }
 
 h1 {
   color: #2c3e50;
-  font-size: 32px;
-  margin-bottom: 8px;
+  font-size: 28px;
 }
 
-h2 {
-  color: #3498db;
-  font-size: 20px;
-  font-weight: normal;
-  margin-top: 0;
-  margin-bottom: 16px;
+input {
+  padding: 8px;
+  width: 70%;
+  margin-right: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
-p {
-  color: #333;
-  font-size: 16px;
-  line-height: 1.6;
-  margin: 8px 0;
+button {
+  padding: 8px 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-.highlight {
-  background-color: lightblue;
-  padding: 20px;
+ul {
+  list-style: none;
+  padding: 0;
 }
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+li input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+li button {
+  background-color: #e74c3c;
+  padding: 4px 12px;
+}}

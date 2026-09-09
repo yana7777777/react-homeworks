@@ -1,42 +1,74 @@
+import { useState } from 'react';
 import './App.css';
 
 let clickCount = 0;
 
 function App() {
-    function handleClick() {
-        clickCount = clickCount + 1;
-        console.log('Нажатий:', clickCount);
+    const [tasks, setTasks] = useState([]);
+    const [text, setText] = useState('');
+
+    function addTask() {
+        if (text === '') return;
+        const newTask = {
+            id: Date.now(),
+            text: text,
+            completed: false
+        };
+        setTasks([...tasks, newTask]);
+        setText('');
     }
 
-    function handleChange(event) {
-        console.log('Имя:', event.target.value);
+    function toggleTask(id) {
+        const newTasks = tasks.map(task => {
+            if (task.id === id) {
+                task.completed = !task.completed;
+            }
+            return task;
+        });
+        setTasks(newTasks);
     }
 
-    function handleMouse() {
-        console.log('Мышь наведена!');
+    function deleteTask(id) {
+        const newTasks = tasks.filter(task => task.id !== id);
+        setTasks(newTasks);
+    }
+
+    let completedCount = 0;
+    for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].completed) {
+            completedCount++;
+        }
     }
 
     return (
         <div className="card">
-            <h1>Домашнее задание 5</h1>
-
-            <button onClick={handleClick}>Нажми меня</button>
-            <p>Количество нажатий смотрите в консоли</p>
-
-            <hr />
+            <h1>Список задач</h1>
 
             <input
                 type="text"
-                placeholder="Введите имя"
-                onChange={handleChange}
+                placeholder="Введите задачу..."
+                value={text}
+                onChange={(e) => setText(e.target.value)}
             />
-            <p>Смотрите имя в консоли</p>
+            <button onClick={addTask}>Добавить</button>
 
-            <hr />
+            <p>Выполнено {completedCount} из {tasks.length}</p>
 
-            <div className="highlight" onMouseOver={handleMouse}>
-                Наведи на меня
-            </div>
+            {tasks.length === 0 && <p>Нет задач</p>}
+
+            <ul>
+                {tasks.map(task => (
+                    <li key={task.id}>
+                        <input
+                            type="checkbox"
+                            checked={task.completed}
+                            onChange={() => toggleTask(task.id)}
+                        />
+                        {task.text}
+                        <button onClick={() => deleteTask(task.id)}>Удалить</button>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
