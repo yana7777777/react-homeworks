@@ -1,76 +1,36 @@
-import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 
-// Компонент, который загружает и отображает посты
-function DataFetcher({ userId }) {
-    const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
+function Home() {
+    return <h2>Главная страница</h2>;
+}
 
-    useEffect(() => {
-        console.log('Монтирование компонента');
-        fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
-            .then(res => res.json())
-            .then(data => {
-                setPosts(data.slice(0, 5));
-                setLoading(false);
-            });
+function About() {
+    return <h2>О нас</h2>;
+}
 
-        return () => {
-            console.log('Размонтирование компонента');
-        };
-    }, [userId]);
+function Contacts() {
+    return <h2>Контакты</h2>;
+}
 
-    useEffect(() => {
-        console.log('Обновление компонента (зависимость userId)');
-    }, [userId]);
-
-    if (loading) {
-        return <p>Загрузка...</p>;
-    }
-
+function App() {
     return (
-        <div>
-            <h3>Посты пользователя {userId}</h3>
-            <ul>
-                {posts.map(post => (
-                    <li key={post.id}>
-                        <strong>{post.title}</strong>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <BrowserRouter>
+            <div className="app">
+                <h1>Домашнее задание 14</h1>
+                <nav>
+                    <Link to="/">Главная</Link>
+                    <Link to="/about">О нас</Link>
+                    <Link to="/contacts">Контакты</Link>
+                </nav>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contacts" element={<Contacts />} />
+                </Routes>
+            </div>
+        </BrowserRouter>
     );
 }
 
-// Контейнер с кнопкой показать/скрыть
-function DataFetcherContainer() {
-    const [visible, setVisible] = useState(true);
-    const [userId, setUserId] = useState(1);
-
-    return (
-        <div className="card">
-            <h1>DataFetcher</h1>
-            <button onClick={() => setVisible(!visible)}>
-                {visible ? 'Скрыть' : 'Показать'}
-            </button>
-
-            {visible && (
-                <>
-                    <label>
-                        ID пользователя:
-                        <select value={userId} onChange={(e) => setUserId(Number(e.target.value))}>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                        </select>
-                    </label>
-                    <DataFetcher userId={userId} />
-                </>
-            )}
-        </div>
-    );
-}
-
-export default DataFetcherContainer;
+export default App;
