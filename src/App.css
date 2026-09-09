@@ -1,40 +1,16 @@
-.card {
-  max-width: 600px;
+.app {
+  max-width: 400px;
   margin: 50px auto;
-  padding: 20px;
-  border: 2px solid #3498db;
-  border-radius: 16px;
-  background-color: #f0f8ff;
   text-align: center;
   font-family: Arial, sans-serif;
 }
 
-button {
-  padding: 8px 16px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin: 10px;
-}
-
-select {
-  padding: 6px;
-  margin-left: 10px;
-  border-radius: 6px;
-}
-
 ul {
-  text-align: left;
   list-style: none;
   padding: 0;
 }
 
 li {
-  background: #fff;
-  margin: 8px 0;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
 }
