@@ -1,6 +1,7 @@
 import { AuthProvider } from './AuthContext';
 import TopComponent from './UserProfile';
 import './App.css';
+import UserCard from './UserCard';
 
 function App() {
     return (
