@@ -1,40 +1,30 @@
-.card {
-  max-width: 600px;
-  margin: 50px auto;
+.app {
+  max-width: 500px;
+  margin: 40px auto;
   padding: 20px;
-  border: 2px solid #3498db;
-  border-radius: 16px;
-  background-color: #f0f8ff;
-  text-align: center;
   font-family: Arial, sans-serif;
 }
 
-button {
-  padding: 8px 16px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin: 10px;
+h1 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 25px;
 }
 
-select {
-  padding: 6px;
-  margin-left: 10px;
-  border-radius: 6px;
+.article-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
 }
 
-ul {
-  text-align: left;
-  list-style: none;
-  padding: 0;
+.article-card h3 {
+  margin: 0 0 10px;
+  color: #2c3e50;
 }
 
-li {
-  background: #fff;
-  margin: 8px 0;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
+.article-card p {
+  margin: 4px 0;
+  color: #555;
 }
