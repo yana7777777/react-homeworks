@@ -1,87 +1,34 @@
 .app {
-  max-width: 500px;
-  margin: 40px auto;
+  max-width: 400px;
+  margin: 60px auto;
   padding: 20px;
+  text-align: center;
   font-family: Arial, sans-serif;
   text-align: center;
 }
 
-.user-panel {
-  border: 2px solid #3498db;
-  border-radius: 12px;
-  padding: 20px;
-  margin: 20px 0;
-  background-color: #f9f9f9;
+.timer {
+  font-size: 24px;
+  margin: 30px 0;
+  font-weight: bold;
 }
 
-.user-panel h3 {
-  margin-top: 0;
-}
-
-.login-form {
+.buttons {
   display: flex;
   justify-content: center;
   gap: 10px;
-  flex-wrap: wrap;
-}
-
-.login-form input {
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 200px;
-}
-
-h1 {
-  text-align: center;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  padding: 15px 20px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.user-name-row {
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.edit-row,
-.actions-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-}
-
-.edit-row input {
-  flex: 1;
-  padding: 6px 10px;
-  border: 1px solid #aaa;
-  border-radius: 4px;
 }
 
 button {
-  padding: 6px 14px;
-  border: none;
-  border-radius: 4px;
+  padding: 10px 20px;
   background-color: #3498db;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-size: 16px;
   cursor: pointer;
 }
 
 button:hover {
-  opacity: 0.8;
+  opacity: 0.85;
 }

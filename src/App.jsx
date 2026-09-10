@@ -1,16 +1,40 @@
-import { AuthProvider } from './AuthContext';
-import TopComponent from './UserProfile';
+import { useState, useRef } from 'react';
 import './App.css';
 import UserCard from './UserCard';
 
 function App() {
+    const [seconds, setSeconds] = useState(0);
+    const intervalRef = useRef(null);
+
+    const startTimer = () => {
+        if (intervalRef.current !== null) return;
+        intervalRef.current = setInterval(() => {
+            setSeconds(prev => prev + 1);
+        }, 1000);
+    };
+
+    const stopTimer = () => {
+        if (intervalRef.current !== null) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+        }
+    };
+
+    const resetTimer = () => {
+        stopTimer();
+        setSeconds(0);
+    };
+
     return (
-        <AuthProvider>
-            <div className="app">
-                <h1>Главная страница</h1>
-                <TopComponent />
+        <div className="app">
+            <h1>Секундомер (useRef + setInterval)</h1>
+            <p className="timer">Прошло секунд: {seconds}</p>
+            <div className="buttons">
+                <button onClick={startTimer}>Старт</button>
+                <button onClick={stopTimer}>Стоп</button>
+                <button onClick={resetTimer}>Сброс</button>
             </div>
-        </AuthProvider>
+        </div>
     );
 }
 
