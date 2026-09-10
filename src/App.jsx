@@ -1,57 +1,41 @@
-import { useState, useCallback } from 'react';
-import TodoItem from './TodoItem';
+import { useState, useMemo } from 'react';
 import './App.css';
-import UserCard from './UserCard';
 
 function App() {
-    const [tasks, setTasks] = useState([
-        { id: 1, text: 'Walk', completed: false },
-        { id: 2, text: 'Go shopping', completed: false },
-        { id: 3, text: 'Write code', completed: false },
+    const [users] = useState([
+        { id: 1, name: 'Алексей' },
+        { id: 2, name: 'Мария' },
+        { id: 3, name: 'Иван' },
+        { id: 4, name: 'Ольга' },
+        { id: 5, name: 'Дмитрий' },
     ]);
-    const [input, setInput] = useState('');
+    const [search, setSearch] = useState('');
+    const [count, setCount] = useState(0);
 
-    const addTask = () => {
-        if (input.trim() === '') return;
-        const newTask = { id: Date.now(), text: input.trim(), completed: false };
-        setTasks([...tasks, newTask]);
-        setInput('');
-    };
-
-    const toggleTask = useCallback((id) => {
-        setTasks(prev =>
-            prev.map(task =>
-                task.id === id ? { ...task, completed: !task.completed } : task
-            )
+    const filteredUsers = useMemo(() => {
+        console.log('Filtering users...');
+        return users.filter(user =>
+            user.name.toLowerCase().includes(search.toLowerCase())
         );
-    }, []);
-
-    const deleteTask = useCallback((id) => {
-        setTasks(prev => prev.filter(task => task.id !== id));
-    }, []);
+    }, [search, users]);
 
     return (
         <div className="app">
-            <h1>Todo list (React.memo)</h1>
-            <div className="add-form">
-                <input
-                    type="text"
-                    placeholder="New task"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                />
-                <button onClick={addTask}>Add</button>
-            </div>
+            <h1>Поиск пользователей (useMemo)</h1>
+            <input
+                type="text"
+                placeholder="Введите имя"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+            />
             <ul>
-                {tasks.map(task => (
-                    <TodoItem
-                        key={task.id}
-                        task={task}
-                        onToggle={toggleTask}
-                        onDelete={deleteTask}
-                    />
+                {filteredUsers.map(user => (
+                    <li key={user.id}>{user.name}</li>
                 ))}
             </ul>
+            <button onClick={() => setCount(count + 1)}>
+                Лишний ререндер: {count}
+            </button>
         </div>
     );
 }
