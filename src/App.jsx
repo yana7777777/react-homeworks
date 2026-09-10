@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import './App.css';
+import UserCard from './UserCard';
 
 function App() {
     const [seconds, setSeconds] = useState(0);
