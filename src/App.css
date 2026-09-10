@@ -1,80 +1,25 @@
 .app {
   max-width: 500px;
   margin: 40px auto;
-  padding: 20px;
   font-family: Arial, sans-serif;
   text-align: center;
 }
 
-.user-panel {
-  border: 2px solid #3498db;
-  border-radius: 12px;
-  padding: 20px;
-  margin: 20px 0;
-  background-color: #f9f9f9;
-}
-
-.user-panel h3 {
-  margin-top: 0;
-}
-
-.login-form {
+.add-form {
   display: flex;
-  justify-content: center;
   gap: 10px;
-  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
-.login-form input {
+.add-form input {
+  flex: 1;
   padding: 8px 12px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 200px;
-}
-
-h1 {
-  text-align: center;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  padding: 15px 20px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.user-name-row {
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.edit-row,
-.actions-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-}
-
-.edit-row input {
-  flex: 1;
-  padding: 6px 10px;
-  border: 1px solid #aaa;
   border-radius: 4px;
 }
 
 button {
   padding: 6px 14px;
-  border: none;
-  border-radius: 4px;
   background-color: #3498db;
   color: white;
   border: none;
@@ -84,4 +29,26 @@ button {
 
 button:hover {
   opacity: 0.8;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.task-text {
+  cursor: pointer;
+}
+
+.completed .task-text {
+  text-decoration: line-through;
+  color: #888;
 }
