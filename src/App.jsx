@@ -1,41 +1,63 @@
-import { useState, useMemo } from 'react';
+import { useState, useCallback } from 'react';
+import TodoItem from './TodoItem';
 import './App.css';
 
 function App() {
-    const [users] = useState([
-        { id: 1, name: 'Алексей' },
-        { id: 2, name: 'Мария' },
-        { id: 3, name: 'Иван' },
-        { id: 4, name: 'Ольга' },
-        { id: 5, name: 'Дмитрий' },
+    // Начальный список задач
+    const [tasks, setTasks] = useState([
+        { id: 1, text: 'Изучить React', completed: false },
+        { id: 2, text: 'Выучить useCallback', completed: false },
     ]);
-    const [search, setSearch] = useState('');
-    const [count, setCount] = useState(0);
+    const [input, setInput] = useState('');
 
-    const filteredUsers = useMemo(() => {
-        console.log('Filtering users...');
-        return users.filter(user =>
-            user.name.toLowerCase().includes(search.toLowerCase())
+    // Добавление новой задачи
+    const addTask = () => {
+        if (input.trim() === '') return;
+        const newTask = { id: Date.now(), text: input.trim(), completed: false };
+        setTasks([...tasks, newTask]);
+        setInput('');
+    };
+
+    // Переключение статуса задачи (обёрнуто в useCallback)
+    const handleToggle = useCallback((id) => {
+        setTasks(prev =>
+            prev.map(task =>
+                task.id === id ? { ...task, completed: !task.completed } : task
+            )
         );
-    }, [search, users]);
+    }, []); // зависимости пусты, т.к. используем функциональное обновление
+
+    // Удаление задачи (обёрнуто в useCallback)
+    const handleDelete = useCallback((id) => {
+        setTasks(prev => prev.filter(task => task.id !== id));
+    }, []);
 
     return (
         <div className="app">
-            <h1>Поиск пользователей (useMemo)</h1>
-            <input
-                type="text"
-                placeholder="Введите имя"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-            />
+            <h1>Список задач (useCallback)</h1>
+
+            {/* Форма добавления */}
+            <div className="add-form">
+                <input
+                    type="text"
+                    placeholder="Новая задача"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                />
+                <button onClick={addTask}>Добавить</button>
+            </div>
+
+            {/* Список задач */}
             <ul>
-                {filteredUsers.map(user => (
-                    <li key={user.id}>{user.name}</li>
+                {tasks.map(task => (
+                    <TodoItem
+                        key={task.id}
+                        task={task}
+                        onToggle={handleToggle}
+                        onDelete={handleDelete}
+                    />
                 ))}
             </ul>
-            <button onClick={() => setCount(count + 1)}>
-                Лишний ререндер: {count}
-            </button>
         </div>
     );
 }
