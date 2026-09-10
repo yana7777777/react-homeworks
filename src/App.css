@@ -1,12 +1,15 @@
-.card {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 2px solid #3498db;
-  border-radius: 16px;
-  background-color: #f0f8ff;
-  text-align: center;
+.app {
+  max-width: 500px;
+  margin: 40px auto;
   font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 button {
@@ -14,27 +17,27 @@ button {
   background-color: #3498db;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
-  margin: 10px;
 }
 
-select {
-  padding: 6px;
-  margin-left: 10px;
-  border-radius: 6px;
+button:hover {
+  opacity: 0.8;
 }
 
-ul {
-  text-align: left;
-  list-style: none;
-  padding: 0;
+.content {
+  padding: 20px;
+  border: 2px solid #3498db;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  min-height: 100px;
 }
 
-li {
-  background: #fff;
-  margin: 8px 0;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
+.error-block {
+  color: #e74c3c;
+}
+
+.error-block button {
+  margin-top: 10px;
+  background-color: #e74c3c;
 }
