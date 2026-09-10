@@ -1,76 +1,58 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
+import TodoItem from './TodoItem';
 import './App.css';
 
-// Компонент, который загружает и отображает посты
-function DataFetcher({ userId }) {
-    const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
+function App() {
+    const [tasks, setTasks] = useState([
+        { id: 1, text: 'Walk', completed: false },
+        { id: 2, text: 'Go shopping', completed: false },
+        { id: 3, text: 'Write code', completed: false },
+    ]);
+    const [input, setInput] = useState('');
 
-    useEffect(() => {
-        console.log('Монтирование компонента');
-        fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
-            .then(res => res.json())
-            .then(data => {
-                setPosts(data.slice(0, 5));
-                setLoading(false);
-            });
+    const addTask = () => {
+        if (input.trim() === '') return;
+        const newTask = { id: Date.now(), text: input.trim(), completed: false };
+        setTasks([...tasks, newTask]);
+        setInput('');
+    };
 
-        return () => {
-            console.log('Размонтирование компонента');
-        };
-    }, [userId]);
+    const toggleTask = useCallback((id) => {
+        setTasks(prev =>
+            prev.map(task =>
+                task.id === id ? { ...task, completed: !task.completed } : task
+            )
+        );
+    }, []);
 
-    useEffect(() => {
-        console.log('Обновление компонента (зависимость userId)');
-    }, [userId]);
-
-    if (loading) {
-        return <p>Загрузка...</p>;
-    }
+    const deleteTask = useCallback((id) => {
+        setTasks(prev => prev.filter(task => task.id !== id));
+    }, []);
 
     return (
-        <div>
-            <h3>Посты пользователя {userId}</h3>
+        <div className="app">
+            <h1>Todo list (React.memo)</h1>
+            <div className="add-form">
+                <input
+                    type="text"
+                    placeholder="New task"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                />
+                <button onClick={addTask}>Add</button>
+            </div>
             <ul>
-                {posts.map(post => (
-                    <li key={post.id}>
-                        <strong>{post.title}</strong>
-                    </li>
+                {tasks.map(task => (
+                    <TodoItem
+                        key={task.id}
+                        task={task}
+                        onToggle={toggleTask}
+                        onDelete={deleteTask}
+                    />
                 ))}
             </ul>
         </div>
     );
 }
 
-// Контейнер с кнопкой показать/скрыть
-function DataFetcherContainer() {
-    const [visible, setVisible] = useState(true);
-    const [userId, setUserId] = useState(1);
-
-    return (
-        <div className="card">
-            <h1>DataFetcher</h1>
-            <button onClick={() => setVisible(!visible)}>
-                {visible ? 'Скрыть' : 'Показать'}
-            </button>
-
-            {visible && (
-                <>
-                    <label>
-                        ID пользователя:
-                        <select value={userId} onChange={(e) => setUserId(Number(e.target.value))}>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                        </select>
-                    </label>
-                    <DataFetcher userId={userId} />
-                </>
-            )}
-        </div>
-    );
-}
-
-export default DataFetcherContainer;
+export default App;
