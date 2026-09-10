@@ -1,40 +1,36 @@
-.card {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 2px solid #3498db;
-  border-radius: 16px;
-  background-color: #f0f8ff;
-  text-align: center;
+.app {
+  max-width: 500px;
+  margin: 40px auto;
   font-family: Arial, sans-serif;
+  text-align: center;
 }
 
-button {
-  padding: 8px 16px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin: 10px;
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
 }
 
-select {
-  padding: 6px;
-  margin-left: 10px;
-  border-radius: 6px;
-}
-
-ul {
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #f9f9f9;
   text-align: left;
-  list-style: none;
-  padding: 0;
 }
 
-li {
-  background: #fff;
-  margin: 8px 0;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
+.product-card h3 {
+  margin: 0 0 8px;
+  color: #2c3e50;
+}
+
+.in-stock {
+  color: green;
+  font-weight: bold;
+}
+
+.out-of-stock {
+  color: red;
+  font-weight: bold;
 }
