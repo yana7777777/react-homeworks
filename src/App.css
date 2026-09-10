@@ -1,15 +1,26 @@
 .app {
-  max-width: 500px;
-  margin: 40px auto;
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 20px;
   font-family: Arial, sans-serif;
   text-align: center;
 }
 
-.tabs {
+h1 {
+  font-size: 26px;
+}
+
+.value {
+  font-size: 20px;
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+.buttons {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 button {
@@ -17,27 +28,11 @@ button {
   background-color: #3498db;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-size: 15px;
   cursor: pointer;
 }
 
 button:hover {
-  opacity: 0.8;
-}
-
-.content {
-  padding: 20px;
-  border: 2px solid #3498db;
-  border-radius: 12px;
-  background-color: #f9f9f9;
-  min-height: 100px;
-}
-
-.error-block {
-  color: #e74c3c;
-}
-
-.error-block button {
-  margin-top: 10px;
-  background-color: #e74c3c;
+  opacity: 0.85;
 }
