@@ -1,40 +1,45 @@
-.card {
-  max-width: 600px;
-  margin: 50px auto;
+.app {
+  max-width: 500px;
+  margin: 40px auto;
   padding: 20px;
-  border: 2px solid #3498db;
-  border-radius: 16px;
-  background-color: #f0f8ff;
-  text-align: center;
   font-family: Arial, sans-serif;
+  text-align: center;
 }
 
 button {
-  padding: 8px 16px;
+  padding: 10px 20px;
   background-color: #3498db;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  margin: 10px;
+  font-size: 15px;
+  margin-bottom: 20px;
 }
 
-select {
-  padding: 6px;
-  margin-left: 10px;
-  border-radius: 6px;
+button:hover {
+  opacity: 0.85;
 }
 
-ul {
+.user-list {
+  border: 2px solid #3498db;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: #f9f9f9;
   text-align: left;
+}
+
+.user-list h2 {
+  text-align: center;
+  margin-top: 0;
+}
+
+.user-list ul {
   list-style: none;
   padding: 0;
 }
 
-li {
-  background: #fff;
-  margin: 8px 0;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
+.user-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
 }
