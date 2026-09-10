@@ -1,23 +1,21 @@
-import ArticlePreview from './ArticlePreview';
+import { useState, lazy, Suspense } from 'react';
 import './App.css';
 
+const UserList = lazy(() => import('./UserList'));
+
 function App() {
-    // @ts-ignore
+    const [showUsers, setShowUsers] = useState(false);
+
     return (
         <div className="app">
-            <h1>Домашнее задание: Типизация Props</h1>
-            <ArticlePreview
-                title="Введение в React"
-                author="Алексей Смирнов"
-                commentsCount={12}
-                publishedAt="10.08.2025"
-            />
-            <ArticlePreview
-                title="React + TypeScript: с чего начать?"
-                author="Ольга Иванова"
-                commentsCount={8}
-                publishedAt="08.08.2025"
-            />
+            <h1>Домашнее задание: lazy loading</h1>
+            <button onClick={() => setShowUsers(true)}>Показать пользователей</button>
+
+            {showUsers && (
+                <Suspense fallback={<p>Загрузка списка пользователей...</p>}>
+                    <UserList />
+                </Suspense>
+            )}
         </div>
     );
 }
